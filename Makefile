@@ -1,5 +1,16 @@
-PKG=github.com/mindprince/nvidia_gpu_prometheus_exporter
+VERSION_MAJOR ?= 0
+VERSION_MINOR ?= 1
+VERSION_BUILD ?= 0
+VERSION ?= v$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)
+
+ORG := github.com
+OWNER := kairen
+REPOPATH ?= $(ORG)/$(OWNER)/gpu-prometheus-exporter
 
 .PHONY: build
 build:
-	docker run -v $(shell pwd):/go/src/$(PKG) --workdir=/go/src/$(PKG) golang:1.10 go build
+	go build
+
+.PHONY: build_image
+build_image:
+	docker build -t $(OWNER)/gpu-prometheus-exporter:$(VERSION) .
