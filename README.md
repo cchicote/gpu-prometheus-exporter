@@ -29,3 +29,16 @@ their location.
 
 By default the metrics are exposed on port `9445`. This can be updated using
 the `-web.listen-address` flag.
+
+
+### Kubernetes
+Quick start to run on Kubernetes as below:
+```sh
+# Mark your GPU node
+$ kubectl label nodes k8s-g1 node-gpu-exporter='true'
+
+# Deploy GPU exporter into Kubernetes
+$ kubectl create -f deploy/
+```
+
+![](/images/result.png)
